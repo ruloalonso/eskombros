@@ -3,18 +3,18 @@ import { Play } from '../shared/play.model';
 export class Game {
   public date: Date;
   public place: string;
-  public rival: string;
-  public eskscr: number;
-  public rivscr: number;
+  public rivName: string;
+  public eskScore: number;
+  public rivScore: number;
   public plays: Play[];
 
-  constructor(date: Date, place: string, rival: string, eskscr: number,
-              rivscr: number, plays: Play[]) {
+  constructor(date: Date, place: string, rivName: string, eskScore: number,
+              rivScore: number, plays: Play[]) {
     this.date = date;
     this.place = place;
-    this.rival = rival;
-    this.eskscr = eskscr;
-    this.rivscr = rivscr;
+    this.rivName = rivName;
+    this.eskScore = eskScore;
+    this.rivScore = rivScore;
     this.plays = plays;
   }
 }

@@ -14,25 +14,25 @@ export function gameReducers(state = initialState, action: GameActions.GameActio
         ...state,
         games: [...state.games, action.payload]
       };
-    case (GameActions.UPDATE_GAME):
-      const game = state.games[action.payload.index];
-      const updatedGame = {
-        ...game,
-        ...action.payload.updatedGame
-      };
-      const games = [...state.games];
-      games[action.payload.index] = updatedGame;
-      return {
-        ...state,
-        games: games
-      };
-    case (GameActions.DELETE_GAME):
-      const oldGames = [...state.games];
-      oldGames.splice(action.payload, 1);
-      return {
-        ...state,
-        games: oldGames
-      };
+    // case (GameActions.UPDATE_GAME):
+    //   const game = state.games[action.payload.index];
+    //   const updatedGame = {
+    //     ...game,
+    //     ...action.payload.updatedGame
+    //   };
+    //   const games = [...state.games];
+    //   games[action.payload.index] = updatedGame;
+    //   return {
+    //     ...state,
+    //     games: games
+    //   };
+    // case (GameActions.DELETE_GAME):
+    //   const oldGames = [...state.games];
+    //   oldGames.splice(action.payload, 1);
+    //   return {
+    //     ...state,
+    //     games: oldGames
+    //   };
     default:
       return state;
   }

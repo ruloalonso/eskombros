@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
@@ -23,11 +23,13 @@ export class GameEditComponent implements OnInit {
       .subscribe(
         (params: Params) => {
           this.id = +params['id'];
+          this.initForm();
         }
       );
   }
 
   onSubmit() {
+    console.log(this.gameForm.value);
     this.store.dispatch(new GameActions.AddGame(this.gameForm.value));
     this.onCancel();
   }
@@ -43,4 +45,15 @@ export class GameEditComponent implements OnInit {
   // onDeletePlay(index: number) {
   //   (<FormArray>this.gameForm.get('plays')).removeAt(index);
   // }
+
+  private initForm() {
+    this.gameForm = new FormGroup({
+      'rivName': new FormControl(),
+      'place': new FormControl(),
+      'eskScore': new FormControl(),
+      'rivScore': new FormControl(),
+      'date': new FormControl(),
+      'plays': new FormArray([])
+    });
+  }
 }
