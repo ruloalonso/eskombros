@@ -6,8 +6,6 @@ import { GameEditComponent } from './game-edit/game-edit.component';
 import { GameDetailComponent } from './game-detail/game-detail.component';
 import { GameStartComponent } from './game-start/game-start.component';
 
-// import { AuthGuard } from '../auth/auth-guard.service';
-
 
 const gamesRoutes: Routes = [
   { path: '', component: GamesComponent, children: [
@@ -19,12 +17,7 @@ const gamesRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(gamesRoutes)
-  ],
+  imports: [RouterModule.forChild(gamesRoutes)],
   exports: [RouterModule],
-  providers: [
-    // AuthGuard
-  ]
 })
 export class GamesRoutingModule {}

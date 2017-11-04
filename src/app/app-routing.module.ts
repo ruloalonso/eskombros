@@ -5,7 +5,6 @@ import { GamesComponent } from './games/games.component';
 
 const appRoutes: Routes = [
   { path: '', component: GamesComponent },
-  // { path: 'games', loadChildren: './games/games.module#GamesModule'},
 ];
 
 @NgModule({

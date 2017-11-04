@@ -4,12 +4,10 @@
       <div class="row">
         <div class="col-xs-4">
           <div class="form-group">
-            <label for="rivName">Rival</label>
-            <input
-              type="text"
-              id="rivName"
-              formControlName="rivName"
-              class="form-control">
+            <label for="rival">Rival</label>
+            <select #rival id="rival" class="form-control" formControlName="rival" required>
+              <option *ngFor="let rival of rivals" [value]="rival">{{rival}}</option>
+            </select>
           </div>
         </div>
         <div class="col-xs-4">
@@ -19,17 +17,16 @@
               type="date"
               id="date"
               formControlName="date"
-              class="form-control">
+              class="form-control"
+              required>
           </div>
         </div>
         <div class="col-xs-4">
           <div class="form-group">
             <label for="place">Lugar</label>
-            <input
-              type="text"
-              id="place"
-              formControlName="place"
-              class="form-control">
+            <select id="place" class="form-control" formControlName="place" required>
+              <option *ngFor="let place of places" [value]="place">{{place}}</option>
+            </select>
           </div>
         </div>
       </div>
@@ -41,17 +38,19 @@
               type="number"
               id="eskScore"
               formControlName="eskScore"
-              class="form-control">
+              class="form-control"
+              required>
           </div>
         </div>
         <div class="col-xs-4">
           <div class="form-group">
-            <label for="rivScore">Puntuación Rival</label>
+            <label for="rivScore">Puntuación {{ rival.value }}</label>
             <input
               type="number"
               id="rivScore"
               formControlName="rivScore"
-              class="form-control">
+              class="form-control"
+              required>
           </div>
         </div>
       </div>
@@ -62,6 +61,91 @@
             class="btn btn-success"
             [disabled]="!gameForm.valid">Guardar</button>
           <button type="button" class="btn btn-danger" (click)="onCancel()">Cancelar</button>
+          <button type="button" class="btn btn-success" (click)="onAddPlay()">Añadir Jugador</button>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-xs-12" formArrayName="plays">
+          <div
+            class="row"
+            *ngFor="let playCtrl of gameForm.get('plays').controls; let i = index"
+            [formGroupName]="i"
+            style="margin-top: 10px;">
+            <div class="row">
+              <div class="col-xs-6">
+                <!--<label for="player">Jugador</label>-->
+                <select id="place" class="form-control" formControlName="player" required>
+                  <option *ngFor="let player of players" [value]="player">{{player}}</option>
+                </select>
+              </div>
+              <div class="col-xs-2">
+                <!--<label for="delete">Eliminar</label>-->
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  id="delete"
+                  (click)="onDeletePlay(i)">X</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-2">
+                <!--<label for="threeMade">T3 Anotados</label>-->
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="threeMade"
+                  placeholder="T3..."
+                  id="threeMade">
+              </div>
+              <div class="col-xs-2">
+                <!--<label for="twoMade">T2 Anotados</label>-->
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="twoMade"
+                  placeholder="T2..."
+                  id="twoMade">
+              </div>
+              <div class="col-xs-2">
+                <!--<label for="freeMade">TL Anotados</label>-->
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="freeMade"
+                  placeholder="TL..."
+                  id="freeMade">
+              </div>
+              <div class="col-xs-2">
+                <!--<label for="freeAtt">TL Tirados</label>-->
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="freeAtt"
+                  placeholder="TL tirados"
+                  id="freeAtt">
+              </div>
+              <div class="col-xs-2">
+                <!--<label for="foul">Faltas</label>-->
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="foul"
+                  placeholder="Faltas..."
+                  id="foul">
+              </div>
+              <div class="col-xs-2">
+                <!--<label for="tech">Técnicas</label>-->
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="tech"
+                  placeholder="Técnicas..."
+                  id="tech">
+              </div>
+            </div>
+            <hr>
+          </div>
         </div>
       </div>
     </form>
@@ -69,3 +153,6 @@
 </div>
 
 
+
+<p>Form value: {{ gameForm.value | json }}</p>
+<p>Form status: {{ gameForm.status | json }}</p>
